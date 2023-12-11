@@ -48,7 +48,6 @@ public class CSVHelper {
                         csvRecord.get(8),
                         csvRecord.get(9)
                 ); */
-                StringBuilder stringBuilder = new StringBuilder(1000);
                 Product product = Product.builder()
                         .uniq_id(csvRecord.get(0))
                         .sku(csvRecord.get(1))
@@ -63,7 +62,7 @@ public class CSVHelper {
                         .product_image_urls(csvRecord.get(10))
                         .brand(csvRecord.get(11))
                         .total_number_reviews(csvRecord.get(12))
-                        .Reviews(stringBuilder.append(csvRecord.get(13))).build();
+                        .Reviews(csvRecord.get(13)).build();
                 products.add(product);
             }
             return products;

@@ -6,12 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
 @Entity
-public class Product {
+public class Product implements Serializable {
     @Id
     private String uniq_id;
     private String sku;
@@ -30,5 +33,5 @@ public class Product {
     private String brand;
     private String total_number_reviews;
     @Column(columnDefinition="varchar2(50000)")
-    private StringBuilder Reviews;
+    private String Reviews;
 }
