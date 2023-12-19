@@ -35,8 +35,11 @@ public class ProductCatalogController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @GetMapping("/test")
+    @GetMapping("/products/{id}")
+    public ResponseEntity < Product > getProductById(@PathVariable String uniqueId) {
+        return ResponseEntity.ok().body(productService.getUniqueById(uniqueId));
+    }
+    @GetMapping("/upload")
     public ResponseEntity<String> test() throws FileNotFoundException {
         try{
             File file = ResourceUtils.getFile("classpath:jcpsample.csv");
@@ -48,5 +51,4 @@ public class ProductCatalogController {
         }
 
     }
-
 }
