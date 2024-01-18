@@ -39,4 +39,9 @@ public class ProductServiceImpl implements ProductService{
             }
     }
 
+    @Override
+    public List<Product> getProductsBySku(String sku) {
+        return repository.findBySku(sku);
+    }
+
 }

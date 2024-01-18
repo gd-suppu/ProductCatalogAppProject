@@ -13,8 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
-@CrossOrigin("http://localhost:8080")
-@Controller
+@RestController
 @RequestMapping("/catalog")
 public class ProductCatalogController {
     @Autowired
@@ -35,12 +34,12 @@ public class ProductCatalogController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/products/{id}")
+    @GetMapping("/products/{uniqueId}")
     public ResponseEntity < Product > getProductById(@PathVariable String uniqueId) {
         return ResponseEntity.ok().body(productService.getUniqueById(uniqueId));
     }
     @GetMapping("/upload")
-    public ResponseEntity<String> test() throws FileNotFoundException {
+    public ResponseEntity<String> upload() throws FileNotFoundException {
         try{
             File file = ResourceUtils.getFile("classpath:jcpsample.csv");
             FileInputStream inputFile = new FileInputStream(file);
@@ -50,5 +49,9 @@ public class ProductCatalogController {
             return new ResponseEntity<>("Exception while loading",HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+    @GetMapping("/products-by-sku")
+    public List<Product> getProductsBySku(@RequestParam String sku) {
+        return productService.getProductsBySku(sku);
     }
 }

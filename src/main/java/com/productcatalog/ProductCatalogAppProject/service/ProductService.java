@@ -12,5 +12,6 @@ public interface ProductService {
 
     Product getUniqueById(String uniqueId);
 
+    List<Product> getProductsBySku(String sku);
 
 }
